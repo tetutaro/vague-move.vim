@@ -208,5 +208,63 @@ function! vaguemove#MoveRight()
     endif
 endfunction
 
+" move left regarding softtab
+function! vaguemove#SofttabLeft(key)
+    if &softtabstop == 0
+        exec ":normal! " . a:key
+        return
+    endif
+    let curpos = col('.') - 1
+    if curpos == 0
+        exec ":normal! " . a:key
+        return
+    endif
+    let line = getline('.')
+    let llen = len(line)
+    let cspace = match(line, '[^ ]')
+    if cspace < 0
+        let scpace = llen - 1
+    endif
+    if curpos > cspace
+        exec ":normal! " . a:key
+        return
+    endif
+    let nmove = curpos % &softtabstop
+    if nmove == 0
+        exec ":normal! ".repeat(a:key, &softtabstop)
+    else
+        exec ":normal! ".repeat(a:key, nmove)
+    endif
+endfunction
+
+" move right regarding softtab
+function! vaguemove#SofttabRight(key)
+    if &softtabstop == 0
+        exec ":normal! " . a:key
+        return
+    endif
+    let curpos = col('.') - 1
+    let line = getline('.')
+    let llen = len(line)
+    if curpos >= llen - 1
+        exec ":normal! " . a:key
+        return
+    endif
+    let cspace = match(line, '[^ ]')
+    if cspace < 0
+        let scpace = llen - 1
+    endif
+    if curpos >= cspace
+        exec ":normal! " . a:key
+        return
+    endif
+    let target = (curpos / &softtabstop + 1) * &softtabstop
+    if target > cspace
+        exec ":normal! ".repeat(a:key, cspace - curpos)
+    else
+        exec ":normal! ".repeat(a:key, target - curpos)
+    endif
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo

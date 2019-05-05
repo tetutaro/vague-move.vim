@@ -20,6 +20,10 @@ command! -nargs=0 VagueMoveLeft call vaguemove#MoveLeft()
 command! -nargs=0 VagueMoveDown call vaguemove#MoveDown()
 command! -nargs=0 VagueMoveUp call vaguemove#MoveUp()
 command! -nargs=0 VagueMoveRight call vaguemove#MoveRight()
+command! -nargs=0 VagueSofttabLeft call vaguemove#SofttabLeft('h')
+command! -nargs=0 VagueSofttabRight call vaguemove#SofttabRight('l')
+command! -nargs=0 VagueSofttabDelete call vaguemove#SofttabLeft('X')
+command! -nargs=0 VagueSofttabBS call vaguemove#SofttabRight('x')
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

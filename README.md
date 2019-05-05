@@ -27,3 +27,11 @@ VIMで適当に都合よく動くように
     - 最後のタブ or 上のウィンドウ or 最後のバッファに行く
 - VagueMoveRight
     - 右のタブ or 右のウィンドウ or 右のバッファに行く
+- VagueSofttabLeft
+    - SofttabをHardtabのように左に移動する
+- VagueSofttabRight
+    - SofttabをHardtabのように右に移動する
+- VagueSofttabDelete
+    - SofttabをHardtabのように削除（カーソルの左）する
+- VagueSofttabBS
+    - SofttabをHardtabのように削除（カーソルの右）する
